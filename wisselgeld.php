@@ -1,8 +1,12 @@
 <?php
-$geld = array('50', '20', '10', '5', '2', '1');
+$Doekoe = array('50', '20', '10', '5', '2', '1');
 $aantal = $argv[1];
 $restanten = $aantal;
-foreach ($geld as $value) {
+$EurosEnCentjes = explode(".", $aantal);
+$aantal = $EurosEnCentjes[0];
+$centenInput = $EurosEnCentjes[1];
+$restantenCentjes = $centenInput;
+foreach ($Doekoe  as $value) {
   if ($aantal > 0) {
     $totaal = floor($restanten / $value);
     if ($totaal > 0) {
@@ -12,5 +16,17 @@ foreach ($geld as $value) {
     }
   }
 }
+$centjes = array('50', '20', '10', '5');
+foreach ($centjes as $value2) {
+  if ($centenInput > 0) {
+    $totaalCentjes = floor($restantenCentjes / $value2);
+    if ($totaalCentjes > 0) {
+      echo "U krijgt $totaalCentjes x $value2 cent" . PHP_EOL;
+      $centenInput = $restantenCentjes;
+      $restantenCentjes = ($restantenCentjes % $value2);
+    }
+  }
+}
+
 
  ?>
